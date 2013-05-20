@@ -22,18 +22,17 @@ define(['jquery'], function ($) {
 			parser = {
 
 				beginSequence: function (sgf) {
-					var newSequence;
-
-					if (sequence) {
-						newSequence = {
-							parent: sequence
-						};
-						sequence.sequences = sequence.sequences || [];
-						sequence.sequences.push(newSequence);
-						sequence = newSequence;
-					} else {
+					if (!sequence) {
 						sequence = json;
 					}
+
+					var newSequence = {
+						parent: sequence
+					};
+
+					sequence.sequences = sequence.sequences || [];
+					sequence.sequences.push(newSequence);
+					sequence = newSequence;
 
 					return parse(sgf.substring(1));
 				},
@@ -41,10 +40,10 @@ define(['jquery'], function ($) {
 				endSequence: function (sgf) {
 					if (sequence.parent) {
 						sequence = sequence.parent;
-						return parse(sgf.substring(1));
 					} else {
-						return json;
+						sequence = null;
 					}
+					return parse(sgf.substring(1));
 				},
 
 				node: function (sgf) {

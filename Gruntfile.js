@@ -38,11 +38,14 @@ module.exports = function (grunt) {
 			},
 			gruntfile: {
 				src: 'Gruntfile.js'
+			},
+			scripts: {
+				src: 'src/**/*.js'
 			}
 		},
-		qunit: {
-			files: ['test/**/*.html']
-		},
+		//qunit: {
+			//files: ['test/**/*.html']
+		//},
 		watch: {
 			gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
@@ -68,6 +71,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jshint' ]);
 
 };
