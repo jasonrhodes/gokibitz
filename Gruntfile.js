@@ -48,6 +48,14 @@ module.exports = function (grunt) {
 				files: '<%= jshint.gruntfile.src %>',
 				tasks: ['jshint:gruntfile']
 			}
+		},
+		connect: {
+			server: {
+				options: {
+					keepalive: true,
+					port: 8000
+				}
+			}
 		}
 	});
 
